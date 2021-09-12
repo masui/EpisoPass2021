@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>title</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+	  console.log( "ready!" );
+      });
+    </script>
+    <link rel="stylesheet" href="test.css" type="text/css">
+    <style type="text/css">
+      body {
+	  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;a:link { color: #0000f0 ; }
+      }
+      a:visited { color: #0000f0 ; }
+      a {
+	  text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>EpisoPass問題作成</h1>
+
+    <ul>
+      <li>簡単にQ/Aリストを作れるようにしたい?</li>
+      <li>自動セーブしたい</li>
+      <li>「✖」じゃなくて、空白にすると消えるようにするといいかも</li>
+      <li>問題は自動生成したい</li>
+      <li>Helpfeel的に展開出力できるのでは</li>
+    </ul>
+    
+    <h2>地名リスト</h2>
+
+    <ul>
+      <li>自分に関連がありそうな地名をリストしてください</li>
+      <li>できれば50個程度お願いします</li>
+      <li>県名/都市名/町名などランダムに追加できます</li>
+    </ul>
+    
+    <form>
+      <span style="padding:10px";>
+	<input type="text" value="東京">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="大阪">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="イギリス">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="アメリカ">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="京都">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="神戸">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="札幌">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="本郷">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="中野">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="大宮">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="鎌倉">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="材木座">
+	<span>✖</span>
+      </span>
+      <span style="padding:10px";>
+	<input type="text" value="" placeholder="(追加)">
+	<span>✖</span>
+      </span>
+    </form>
+
+    <h2>問題リスト</h2>
+    
+    <ul>
+      <li>10個以上問題を作成してください</li>
+      <li>問題から地名リストの項目のひとつを同定できることを確認してください</li>
+    </ul>
+
+    <form>
+      <span style="padding:10px 10px 10px 10px;">
+	<input type="text" value="公園でコケたのは?" style="width:300px;">
+	<span>✖</span>
+      </span>
+      <br/>
+      <span style="padding:10px 10px 10px 10px;">
+	<input type="text" value="床屋の世話になったのは?" style="width:300px;">
+	<span>✖</span>
+      </span>
+      <br/>
+      <span style="padding:10px 10px 10px 10px;">
+	<input type="text" value="喫茶店が閉まってたのは?" style="width:300px;">
+	<span>✖</span>
+      </span>
+    </form>
+
+    <div style="height:200px;">
+    
+    <form>
+      <input type="button" value="データセーブ">
+    </form>
+    
+  </body>
+</html>
