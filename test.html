@@ -13,6 +13,7 @@
     <script src="./episopass.js"></script>
     <script type="text/javascript">
       $(function() {
+        initdata();
 	  console.log( "ready!" );
       });
     </script>
@@ -47,7 +48,7 @@
       <li>県名/都市名/町名などランダムに追加できます</li>
     </ul>
     
-    <form>
+    <form id="answers">
       <span style="padding:10px";>
 	<input type="text" value="東京">
 	<span><a href="xxx">✖</a></span>
