@@ -12,20 +12,20 @@ let data = [
 ]
 
 function initdata(){
-    form = $('#answers')
+    let form = $('#answers')
     form.children().remove()
 
     for(var i=0;i<data.length;i++){
-      span = $('<span>')
+      let span = $('<span>')
       let input = $('<input>')
           .attr('type','text')
           .attr('class','answerinput')
           .val(data[i])
       span.append(input)
-      a = $('<a>')
-      a.attr('href','xxxx')
-      a.text('✖')
-      a.attr('class','check')
+      let a = $('<a>')
+         .attr('href','xxxx')
+         .text('✖')
+         .attr('class','check')
       //check = $('<span>')
       //check.append(a)
       //check.attr('class','check')
