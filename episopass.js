@@ -26,7 +26,7 @@ function n個目の答を登録する関数(n){
     }
 }
 
-function 重複を削除(リスト){
+function 重複と空エントリを削除(リスト){
     let 新しいリスト = []
     for(var i=0;i<リスト.length;i++){
 	let 項目 = リスト[i]
@@ -34,11 +34,14 @@ function 重複を削除(リスト){
 	    新しいリスト.push(項目)
 	}
     }
-    return 新しいリスト
+    リスト.length = 0 // 配列を削除
+    for(var i=0;i<新しいリスト.length;i++){
+	リスト[i] = 新しいリスト[i]
+    }
 }
 
 function 回答リスト表示(){
-    回答リスト = 重複を削除(回答リスト)
+    重複と空エントリを削除(回答リスト)
     let 回答リストdiv = $('#answers')
     回答リストdiv.children().remove()
     
