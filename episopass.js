@@ -17,9 +17,9 @@ function initdata(){
 
     for(var i=0;i<data.length;i++){
       span = $('<span>')
-      span.attr('class','answer')
       input = $('<input>')
       input.attr('type','text')
+      input.attr('class','answerinput')
       input.val(data[i])
       span.append(input)
       a = $('<a>')
