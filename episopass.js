@@ -31,7 +31,7 @@ function initdata(){
             .val(data[i])
 	span.append(input)
 	let a = $('<span>')
-            .text('✖')
+      .text('✖')
 	    .attr('class','check')
 	a.on('click',clickn(i))
 	     
