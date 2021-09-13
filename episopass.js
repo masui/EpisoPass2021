@@ -17,10 +17,10 @@ function initdata(){
 
     for(var i=0;i<data.length;i++){
       span = $('<span>')
-      input = $('<input>')
-      input.attr('type','text')
-      input.attr('class','answerinput')
-      input.val(data[i])
+      let input = $('<input>')
+          .attr('type','text')
+          .attr('class','answerinput')
+          .val(data[i])
       span.append(input)
       a = $('<a>')
       a.attr('href','xxxx')
