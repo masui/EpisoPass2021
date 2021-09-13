@@ -22,7 +22,10 @@ function initdata(){
       input.attr('type','text')
       input.val(data[i])
       span.append(input)
-      check = $('<span><a href="xxx">✖</a></span>')\
+      a = $('<a>')
+      a.attr('href','xxxx')
+      check = $('<span>')
+      check.append(a)
       check.attr('class','check')
       span.append(check)
       form.append(span)
