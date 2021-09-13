@@ -25,6 +25,7 @@ function initdata(){
       a = $('<a>')
       a.attr('href','xxxx')
       a.text('✖')
+      a.attr('class','check')
       //check = $('<span>')
       //check.append(a)
       //check.attr('class','check')
