@@ -5,6 +5,7 @@ let data = [
 
 function initdata(){
     form = $('#answers')
+    form.children().remove()
     span = $('<span>')
     span.text('xxxxxxx')
     form.append(span)
