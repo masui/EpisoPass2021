@@ -22,8 +22,8 @@ function initdata(){
       input.attr('type','text')
       input.val(data[i])
       span.append(input)
-      check = $('<span><a href="xxx">✖</a></span>')
-      check.css('padding','10px')
+      check = $('<span><a href="xxx">✖</a></span>')\
+      check.attr('class','check')
       span.append(check)
       form.append(span)
     }
