@@ -1,3 +1,7 @@
 body {
     background-color: #ddd;
 }
+
+.answer {
+    paddging: 10px;
+}

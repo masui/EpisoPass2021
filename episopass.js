@@ -4,7 +4,11 @@ let data = [
     '京都',
     '鎌倉',
     '材木座',
-    '大宮'
+    '大宮',
+    '北海道',
+    '福島',
+    '福岡',
+    '沖縄'
 ]
 
 function initdata(){
@@ -13,7 +17,7 @@ function initdata(){
 
     for(var i=0;i<data.length;i++){
       span = $('<span>')
-      span.css('padding','10px')
+      span.attr('class','answer')
       input = $('<input>')
       input.attr('type','text')
       input.val(data[i])
