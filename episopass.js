@@ -11,18 +11,23 @@ let 回答リスト = [
     '熊本',
     '沖縄'
 ]
+let 問題リスト = [
+    'コケたのは?',
+    '床屋の世話になったのは',
+    'メガネをなくしたのは?'
+]
 
-function n個目の答を削除する関数(n,リスト){
+function n個目の答を削除する関数(n,リスト,リストdiv,クラス,改行あり){
     return function(){
 	リスト.splice(n,1)
-	リスト表示(リスト)
+	リスト表示(リスト,リストdiv,クラス,改行あり)
     }
 }
 
-function n個目の答を登録する関数(n,リスト){
+function n個目の答を登録する関数(n,リスト,リストdiv,クラス,改行あり){
     return function(e){
 	リスト[n] = e.target.value
-	リスト表示(リスト)
+	リスト表示(リスト,リストdiv,クラス,改行あり)
     }
 }
 
@@ -40,9 +45,8 @@ function 重複と空エントリを削除(リスト){
     }
 }
 
-function リスト表示(リスト){
+function リスト表示(リスト,リストdiv,クラス,改行あり){
     重複と空エントリを削除(リスト)
-    let リストdiv = $('#answers')
     リストdiv.children().remove()
     
     for(var i=0;i<リスト.length;i++){
@@ -50,30 +54,32 @@ function リスト表示(リスト){
 
 	$('<input>')
             .attr('type','text')
-            .attr('class','answerinput')
+            .attr('class',クラス)
             .val(リスト[i])
 	    .appendTo(エントリ)
-	    .on('change',n個目の答を登録する関数(i,リスト))
+	    .on('change',n個目の答を登録する関数(i,リスト,リストdiv,クラス,改行あり))
 	
 	$('<span>')
 	    .text('✖')
 	    .attr('class','check')
-	    .on('click',n個目の答を削除する関数(i,リスト))
+	    .on('click',n個目の答を削除する関数(i,リスト,リストdiv,クラス,改行あり))
 	    .appendTo(エントリ)
 
 	リストdiv.append(エントリ)
+
+	if(改行あり){
+	    リストdiv.append($('<br/>'))
+	}
     }
 
     let エントリ = $('<span>')
 
     $('<input>')
         .attr('type','text')
-        .attr('class','answerinput')
+        .attr('class',クラス)
         .attr('placeholder','(追加)')
 	.appendTo(エントリ)
-	.on('change',n個目の答を登録する関数(i,リスト))
+	.on('change',n個目の答を登録する関数(i,リスト,リストdiv,クラス,改行あり))
 
     リストdiv.append(エントリ)
 }
-
-

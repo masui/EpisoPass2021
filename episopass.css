@@ -3,10 +3,17 @@ body {
 }
 
 .answerinput {
+    margin: 1px;
+    padding: 3px 10px 3px 10px;
+}
+
+.qinput {
+    width: 500px;
+    margin: 1px;
     padding: 3px 10px 3px 10px;
 }
 
 .check {
-    padding: 2px 20px 2px 4px;
+    padding: 2px 15px 2px 4px;
 }
 

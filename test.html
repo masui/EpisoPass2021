@@ -13,7 +13,8 @@
     <script src="./episopass.js"></script>
     <script type="text/javascript">
       $(function() {
-          リスト表示(回答リスト);
+          リスト表示(回答リスト,$('#answers'),'answerinput',false);
+          リスト表示(問題リスト,$('#questions'),'qinput',true);
 	  console.log( "ready!" );
       });
     </script>
@@ -108,7 +109,7 @@
       <li>10個以上問題を作成してください</li>
     </ul>
 
-    <form>
+    <form id="questions">
       <span style="padding:10px 10px 10px 10px;">
 	<input type="text" value="公園でコケたのは?" style="width:300px;">
 	<span>✖</span>
