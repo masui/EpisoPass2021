@@ -29,7 +29,7 @@ function initdata(){
       //check.append(a)
       //check.attr('class','check')
       //span.append(check)
-      span.append(check)
+      span.append(a)
       form.append(span)
     }
 }
