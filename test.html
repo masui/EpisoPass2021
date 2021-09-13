@@ -13,8 +13,8 @@
     <script src="./episopass.js"></script>
     <script type="text/javascript">
       $(function() {
-          リスト表示(回答リスト,$('#answers'),'answerinput',false);
-          リスト表示(問題リスト,$('#questions'),'qinput',true);
+          リスト表示({リスト:回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+          リスト表示({リスト:問題リスト, フォームid:'questions', クラス:'qinput', 改行あり:true});
 	  console.log( "ready!" );
       });
     </script>

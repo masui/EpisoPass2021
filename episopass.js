@@ -17,17 +17,18 @@ let 問題リスト = [
     'メガネをなくしたのは?'
 ]
 
-function n個目の答を削除する関数(n,リスト,リストdiv,クラス,改行あり){
+//function n個目の答を削除する関数(n,リスト,リストdiv,クラス,改行あり){
+function n個目の答を削除する関数(n,属性){
     return function(){
-	リスト.splice(n,1)
-	リスト表示(リスト,リストdiv,クラス,改行あり)
+	属性.リスト.splice(n,1)
+	リスト表示(属性)
     }
 }
 
-function n個目の答を登録する関数(n,リスト,リストdiv,クラス,改行あり){
+function n個目の答を登録する関数(n,属性){
     return function(e){
-	リスト[n] = e.target.value
-	リスト表示(リスト,リストdiv,クラス,改行あり)
+	属性.リスト[n] = e.target.value
+	リスト表示(属性)
     }
 }
 
@@ -45,30 +46,31 @@ function 重複と空エントリを削除(リスト){
     }
 }
 
-function リスト表示(リスト,リストdiv,クラス,改行あり){
-    重複と空エントリを削除(リスト)
-    リストdiv.children().remove()
+function リスト表示(属性){
+    重複と空エントリを削除(属性.リスト)
+    let フォーム = $(`#${属性.フォームid}`)
+    フォーム.children().remove()
     
-    for(var i=0;i<リスト.length;i++){
+    for(var i=0;i<属性.リスト.length;i++){
 	let エントリ = $('<span>')
 
 	$('<input>')
             .attr('type','text')
-            .attr('class',クラス)
-            .val(リスト[i])
+            .attr('class',属性.クラス)
+            .val(属性.リスト[i])
 	    .appendTo(エントリ)
-	    .on('change',n個目の答を登録する関数(i,リスト,リストdiv,クラス,改行あり))
+	    .on('change',n個目の答を登録する関数(i,属性))
 	
 	$('<span>')
 	    .text('✖')
 	    .attr('class','check')
-	    .on('click',n個目の答を削除する関数(i,リスト,リストdiv,クラス,改行あり))
+	    .on('click',n個目の答を削除する関数(i,属性))
 	    .appendTo(エントリ)
 
-	リストdiv.append(エントリ)
+	フォーム.append(エントリ)
 
-	if(改行あり){
-	    リストdiv.append($('<br/>'))
+	if(属性.改行あり){
+	    フォーム.append($('<br/>'))
 	}
     }
 
@@ -76,10 +78,10 @@ function リスト表示(リスト,リストdiv,クラス,改行あり){
 
     $('<input>')
         .attr('type','text')
-        .attr('class',クラス)
+        .attr('class',属性.クラス)
         .attr('placeholder','(追加)')
 	.appendTo(エントリ)
-	.on('change',n個目の答を登録する関数(i,リスト,リストdiv,クラス,改行あり))
+	.on('change',n個目の答を登録する関数(i,属性))
 
-    リストdiv.append(エントリ)
+    フォーム.append(エントリ)
 }
