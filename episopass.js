@@ -4,8 +4,8 @@ let data = [
 ]
 
 function initdata(){
-    form = $('#questions')
+    form = $('#answers')
     span = $('<span>')
     span.text('xxxxxxx')
-    form. append(span)
+    form.append(span)
 }
