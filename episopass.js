@@ -26,7 +26,19 @@ function n個目の答を登録する関数(n){
     }
 }
 
+function 重複を削除(リスト){
+    let 新しいリスト = []
+    for(var i=0;i<リスト.length;i++){
+	let 項目 = リスト[i]
+	if(項目 != '' && ! 新しいリスト.includes(項目)){
+	    新しいリスト.push(項目)
+	}
+    }
+    return 新しいリスト
+}
+
 function 回答リスト表示(){
+    回答リスト = 重複を削除(回答リスト)
     let 回答リストdiv = $('#answers')
     回答リストdiv.children().remove()
     
