@@ -7,7 +7,7 @@ function initdata(){
     form = $('#answers')
     form.children().remove()
 
-    for(var i=0;i<data.length;i++){}
+    for(var i=0;i<data.length;i++){
       span = $('<span>')
       span.css('padding','10px')
       input = $('<input>')
