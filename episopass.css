@@ -3,9 +3,9 @@ body {
 }
 
 .answerinput {
-    padding: 10px;
+    padding: 2px 10px 2px 10px;
 }
 
 .check {
-    padding: 10px 20px 10px 10px;
+    padding: 2px 20px 2px 10px;
 }
