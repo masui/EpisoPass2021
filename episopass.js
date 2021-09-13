@@ -1,4 +1,4 @@
-let data = [
+let 回答リスト = [
     '東京',
     '大阪',
     '京都',
@@ -12,40 +12,40 @@ let data = [
     '沖縄'
 ]
 
-function clickn(n){
+function n個目の答を削除する関数(n){
     return function(){
-	data.splice(n,1)
-	initdata()
+	回答リスト.splice(n,1)
+	回答リスト表示()
     }
 }
 
-function initdata(){
-    let form = $('#answers')
-    form.children().remove()
+function n個目の答を登録する関数(n){
+    return function(e){
+	回答リスト[n] = e.target.value
+	回答リスト表示()
+    }
+}
+
+function 回答リスト表示(){
+    let 回答リストdiv = $('#answers')
+    回答リストdiv.children().remove()
     
-    for(var i=0;i<data.length;i++){
-	let span = $('<span>')
-	let input = $('<input>')
+    for(var i=0;i<回答リスト.length;i++){
+	let 答エントリ = $('<span>')
+
+	$('<input>')
             .attr('type','text')
             .attr('class','answerinput')
-            .val(data[i])
-	span.append(input)
-	let a = $('<span>')
-      .text('✖')
-	    .attr('class','check')
-	a.on('click',clickn(i))
-	     
-	/*
-	  let checkspan = $('<span>')
-          .attr('class','check')
-	  checkspan.append(a)
-	*/
+            .val(回答リスト[i])
+	    .appendTo(答エントリ)
+	    .on('change',n個目の答を登録する関数(i))
 	
-	//check = $('<span>')
-	//check.append(a)
-	//check.attr('class','check')
-	//span.append(check)
-	span.append(a)
-	form.append(span)
+	$('<span>')
+	    .text('✖')
+	    .attr('class','check')
+	    .on('click',n個目の答を削除する関数(i))
+	    .appendTo(答エントリ)
+
+	回答リストdiv.append(答エントリ)
     }
 }
