@@ -25,12 +25,15 @@ function initdata(){
       let a = $('<a>')
          .attr('href','xxxx')
          .text('✖')
-         .attr('class','check')
+      let checkspan = $('<span>')
+        .attr('class','check')
+      checkspan.append(a)
+
       //check = $('<span>')
       //check.append(a)
       //check.attr('class','check')
       //span.append(check)
-      span.append(a)
+      span.append(checkspan)
       form.append(span)
     }
 }
