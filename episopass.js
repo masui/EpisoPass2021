@@ -7,5 +7,5 @@ function initdata(){
     form = $('#questions')
     span = $('<span>')
     span.text('xxxxxxx')
-    form. appendChild(span)
+    form. append(span)
 }
