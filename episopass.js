@@ -11,9 +11,10 @@ function initdata(){
     span.css('padding','10px')
     input = $('<input>')
     input.attr('type','text')
-    input.val('東京')
+    input.val(data[0])
     span.append(input)
     check = $('<span><a href="xxx">✖</a></span>')
+    check.css('padding','10px')
     span.append(check)
     form.append(span)
 }
