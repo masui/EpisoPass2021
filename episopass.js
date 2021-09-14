@@ -74,7 +74,7 @@ function リスト表示(属性){
 }
 
 function ランダムに回答を追加(リスト){
-    let 未登録のリスト  = リスト.filter(item => !回答リスト.includes(item))
+    let 未登録のリスト = リスト.filter(item => !回答リスト.includes(item))
     let 未登録のデータの数 = 未登録のリスト.length
     if(未登録のデータの数 == 0) return
     let 新たに登録するデータ = 未登録のリスト[Math.floor(Math.random() * 未登録のデータの数)]
@@ -83,7 +83,7 @@ function ランダムに回答を追加(リスト){
 }
 
 function ランダムに問題を追加(){
-    let 未登録のリスト  = 問題例リスト.filter(item => !問題リスト.includes(item))
+    let 未登録のリスト = 問題例リスト.filter(item => !問題リスト.includes(item))
     let 未登録のデータの数 = 未登録のリスト.length
     if(未登録のデータの数 == 0) return
     let 新たに登録するデータ = 未登録のリスト[Math.floor(Math.random() * 未登録のデータの数)]
@@ -119,5 +119,80 @@ function 重みづけランダムに都市を追加(){
     }
 }
 
+function saveAs(data,filename,type){ // ダイアログを開いてデータをローカルファイルにセーブ
+    let blob = new Blob([ data ], { type: type });
+    let url = URL.createObjectURL(blob);
+    const a = $('<a>')
+    a.attr('href',url)
+    a.attr('download',filename)
+    a[0].click(); // jQueryの場合こういう処理が必要
+}
 
+function save(){
+    let s = "{\n"
+    s += "  \"questions\": [\n"
+    for(var i=0;i<問題リスト.length;i++){
+	var q = 問題リスト[i].replace(/"/g,'\\"')
+	s += "    \"" + q + "\""
+	if(i < 問題リスト.length-1) s += ","
+	s += "\n"
+    }
+    s += "  ],\n"
+    s += "  \"answers\": [\n"
+    for(var i=0;i<回答リスト.length;i++){
+	var a = 回答リスト[i].replace(/"/g,'\\"')
+	s += "    \"" + a + "\""
+	if(i < 回答リスト.length-1) s += ","
+	s += "\n"
+    }
+    s += "  ]\n"
+    s += "}\n"
+    
+    saveAs(s, 'episopass.json', "text/json");
+}
+
+function getjsonxx(){
+    var reader;
+    function onChange(event) {
+        reader.readAsText(event.target.files[0]);
+    }
+    function onLoad(event) {
+        console.log(JSON.parse(event.target.result));
+    }
+
+    reader = new FileReader();
+    reader.onload = onLoad;
+
+    $('input[type="file"]').on('change', onChange);
+}
+
+function getjson(){
+    console.log('getjson()')
+    var file = document.querySelector('#fileload');
+    file.onchange = function (){
+	console.log('onchange')
+	var fileList = file.files;
+        var reader = new FileReader();
+        reader.readAsText(fileList[0]);
+        reader.onload = function  () {
+	    var x = $.parseJSON(reader.result)
+	    問題リスト = x['questions']
+	    回答リスト = x['answers']
+	    リスト表示({リスト:回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+	    リスト表示({リスト:問題リスト, フォームid:'questions', クラス:'qinput', 改行あり:true});
+
+
+	    // よくわからないが <input> を作りなおさないと再ロードができない
+	    $('#fileload').remove()
+	    $('<input>')
+		.attr('type','file')
+		.attr('id','fileload')
+		.css('display','none')
+		.attr('accept','text/json')
+		.on('click',getjson)
+		.appendTo($('#saveload'))
+	    
+        };
+    }
+}
 
