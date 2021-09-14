@@ -91,10 +91,26 @@ function ランダムに問題を追加(){
     リスト表示({リスト:問題リスト, フォームid:'questions', クラス:'qinput', 改行あり:true});
 }
 
+function 重みづけ都市選択(){ // 人口の多い都市ほど選ばれやすくする
+    let 総人口 = 0
+    for(var i=0;i<都市リスト.length;i++){
+	総人口 += 都市リスト[i][1]
+    }
+    let 何人目か = Math.floor(Math.random() * 総人口)
+    let 人口総和 = 0
+    for(var i=0;i<都市リスト.length;i++){
+	人口総和 += 都市リスト[i][1]
+	if(人口総和 > 何人目か){
+	    return 都市リスト[i][0]
+	}
+    }
+    return '横浜'
+}
+
 function 重みづけランダムに都市を追加(){
     let 都市
     for(var i=0;i<1000;i++){
-	都市 = 都市選択()
+	都市 = 重みづけ都市選択()
 	if(!回答リスト.includes(都市)){
 	    回答リスト.push(都市)
 	    リスト表示({リスト:回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
@@ -102,7 +118,6 @@ function 重みづけランダムに都市を追加(){
 	}
     }
 }
-
 
 
 
