@@ -67,6 +67,7 @@ function リスト表示(属性){
         .attr('type','text')
         .attr('class',属性.クラス)
         .attr('placeholder','(追加)')
+	.focus()
 	.appendTo(エントリ)
 	.on('change',n個目の答を登録する関数(i,属性))
 
@@ -151,21 +152,6 @@ function save(){
     saveAs(s, 'episopass.json', "text/json");
 }
 
-function getjsonxx(){
-    var reader;
-    function onChange(event) {
-        reader.readAsText(event.target.files[0]);
-    }
-    function onLoad(event) {
-        console.log(JSON.parse(event.target.result));
-    }
-
-    reader = new FileReader();
-    reader.onload = onLoad;
-
-    $('input[type="file"]').on('change', onChange);
-}
-
 function getjson(){
     console.log('getjson()')
     var file = document.querySelector('#fileload');
@@ -175,9 +161,9 @@ function getjson(){
         var reader = new FileReader();
         reader.readAsText(fileList[0]);
         reader.onload = function  () {
-	    var x = $.parseJSON(reader.result)
-	    問題リスト = x['questions']
-	    回答リスト = x['answers']
+	    var data = $.parseJSON(reader.result)
+	    問題リスト = data['questions']
+	    回答リスト = data['answers']
 	    リスト表示({リスト:回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
 	    リスト表示({リスト:問題リスト, フォームid:'questions', クラス:'qinput', 改行あり:true});
 
