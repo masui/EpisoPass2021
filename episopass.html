@@ -12,23 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="./data.js"></script>
     <script src="./episopass.js"></script>
-    <script type="text/javascript">
-      $(function() {
-          リスト表示({リスト:回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
-          リスト表示({リスト:問題リスト, フォームid:'questions', クラス:'qinput', 改行あり:true});
-          console.log( "ready!" );
-      });
-    </script>
     <link rel="stylesheet" href="episopass.css" type="text/css">
-    <style type="text/css">
-      body {
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;a:link { color: #0000f0 ; }
-      }
-      a:visited { color: #0000f0 ; }
-      a {
-      text-decoration: none;
-      }
-    </style>
   </head>
   <body>
     <h1>EpisoPass問題作成</h1>
@@ -53,21 +37,6 @@
       </form>
       
       <form id="answers">
-	<span style="padding:10px";>
-	  <input type="text" value="東京">
-	  <span><a href="xxx">✖</a></span>
-	</span>
-	<span style="padding:10px";>
-	  <input type="text" value="大阪">
-	  <span>✖</span>
-	</span>
-	<span style="padding:10px";>
-	  <input type="text" value="イギリス">
-	  <span>✖</span>
-	</span>
-	<span style="padding:10px";>
-	  <input type="text" value="" placeholder="(地名を追加)">
-	</span>
       </form>
     </blockquote>
     
@@ -83,19 +52,6 @@
       </form>
       
       <form id="questions">
-	<span style="padding:10px 10px 10px 10px;">
-	  <input type="text" value="公園でコケたのは?" style="width:300px;">
-	  <span>✖</span>
-	</span>
-	<br/>
-	<span style="padding:10px 10px 10px 10px;">
-	  <input type="text" value="床屋の世話になったのは?" style="width:300px;">
-	  <span>✖</span>
-	</span>
-	<br/>
-	<span style="padding:10px 10px 10px 10px;">
-	  <input type="text" placeholder="(なぞなぞ問題を追加)" style="width:300px;">
-	</span>
       </form>
     </blockquote>
 

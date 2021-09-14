@@ -1,3 +1,10 @@
+
+$(function() {
+    リスト表示({リスト:回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+    リスト表示({リスト:問題リスト, フォームid:'questions', クラス:'qinput', 改行あり:true});
+    console.log( "ready!" );
+});
+
 function n個目の答を削除する関数(n,属性){
     return function(){
 	属性.リスト.splice(n,1)
