@@ -21,8 +21,16 @@
       <li>楽にQ/Aリストを作れるようにしたい</li>
       <li>問題例を沢山用意しておきたい</li>
       <li>データはWeb上にセーブしない (ローカルHTMLで動し、JSONでセーブ)</li>
-      <li>作成したデータからEpisoQに飛ぶといいか</li>
     </ul>
+    
+    <blockquote>
+      <form id="saveload">
+	<input type="button" value="データセーブ" onclick="save()" />
+        <input type="file" id="fileload" style="display:none;" accept="text/json" onclick="getjson()">
+        <input type="button" value="データロード" onclick="$('#fileload').click()" />
+        <input type="button" value="EpisoPass作成" onclick="goEpisoPass()" />
+      </form>
+    </blockquote>
     
     <h2>地名リスト</h2>
     
@@ -57,20 +65,6 @@
     </blockquote>
 
 
-    <h2>データのセーブとロード</h2>
-
-    <ul>
-      <li>JSON型式でデータをセーブ/ロードできます</li>
-    </ul>
-    
-    <blockquote>
-      <form id="saveload">
-	<input type="button" value="データセーブ" onclick="save()" />
-        <input type="file" id="fileload" style="display:none;" accept="text/json" onclick="getjson()">
-        <input type="button" value="データロード" onclick="$('#fileload').click()" />
-        <!-- <input type="button" value="データロード" onclick="getjson()" /> -->
-      </form>
-    </blockquote>
       
   </body>
 </html>

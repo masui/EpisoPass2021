@@ -182,3 +182,31 @@ function getjson(){
     }
 }
 
+function goEpisoPass(){
+    let len = 問題リスト.length
+
+    let a = []
+    for(var i=0;i<問題リスト.length;i++){
+	a[i] = 問題リスト[i]
+    }
+    for(var i=0;i<len;i++){
+	let n = Math.floor(Math.random() * len)
+	var tmp = a[i]
+	a[i] = a[len-n-1]
+	a[len-n-1] = tmp
+    }
+
+    let max = len
+    if(max > 10) max = 10
+    var qlist = a.slice(0,max).join(';')
+
+    var alist = 回答リスト.join(';')
+
+
+    var url = `http://episopass.com/episopass.html?questions=${qlist}&answers=${alist}`
+    console.log(url)
+    
+    
+    location.href = encodeURI(url)
+}
+
