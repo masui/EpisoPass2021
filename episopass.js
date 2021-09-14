@@ -91,6 +91,18 @@ function ランダムに問題を追加(){
     リスト表示({リスト:問題リスト, フォームid:'questions', クラス:'qinput', 改行あり:true});
 }
 
+function 重みづけランダムに都市を追加(){
+    let 都市
+    for(var i=0;i<1000;i++){
+	都市 = 都市選択()
+	if(!回答リスト.includes(都市)){
+	    回答リスト.push(都市)
+	    リスト表示({リスト:回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+	    break;
+	}
+    }
+}
+
 
 
 
