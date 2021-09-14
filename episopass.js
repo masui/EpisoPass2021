@@ -156,3 +156,21 @@ function ランダムにデータを追加(リスト){
     回答リスト.push(新たに登録するデータ)
     リスト表示({リスト:回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
 }
+
+生成問題リスト = [
+    'aaaa',
+    'bbbb'
+]
+
+function ランダムに問題を追加(){
+    let 未登録のリスト  = 生成問題リスト.filter(item => !問題リスト.includes(item))
+    let 未登録のデータの数 = 未登録のリスト.length
+    if(未登録のデータの数 == 0) return
+    let 新たに登録するデータ = 未登録のリスト[Math.floor(Math.random() * 未登録のデータの数)]
+    問題リスト.push(新たに登録するデータ)
+    リスト表示({リスト:問題リスト, フォームid:'questions', クラス:'qinput', 改行あり:true});
+}
+
+
+
+
