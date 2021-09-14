@@ -631,15 +631,15 @@ const 都市リスト = [
 ]
 
 function 都市選択(){ // 人口の多い都市ほど選ばれやすくする
-    let 人口 = 0
+    let 総人口 = 0
     for(var i=0;i<都市リスト.length;i++){
-	人口 += 都市リスト[i][1]
+	総人口 += 都市リスト[i][1]
     }
-    let r = Math.floor(Math.random() * 人口)
-    let p = 0
+    let 何人目か = Math.floor(Math.random() * 総人口)
+    let 人口総和 = 0
     for(var i=0;i<都市リスト.length;i++){
-	p += 都市リスト[i][1]
-	if(p > r){
+	人口総和 += 都市リスト[i][1]
+	if(人口総和 > 何人目か){
 	    return 都市リスト[i][0]
 	}
     }
