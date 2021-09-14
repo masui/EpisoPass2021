@@ -66,7 +66,7 @@ function リスト表示(属性){
     フォーム.append(エントリ)
 }
 
-function ランダムにデータを追加(リスト){
+function ランダムに回答を追加(リスト){
     let 未登録のリスト  = リスト.filter(item => !回答リスト.includes(item))
     let 未登録のデータの数 = 未登録のリスト.length
     if(未登録のデータの数 == 0) return
