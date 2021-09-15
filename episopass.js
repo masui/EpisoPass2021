@@ -174,18 +174,31 @@ function JSONデータロード(){
     }
 }
 
+function データシャッフル(リスト){
+    let len = リスト.length
+    for(var i=0;i<len;i++){
+	let n = Math.floor(Math.random() * (len-i))
+	let tmp = リスト[i]
+	リスト[i] = リスト[len-n-1]
+	リスト[len-n-1] = tmp
+    }
+}
+
 function EpisoPassページ作成(){
     let 問題数 = 問題リスト.length
     let リスト = []
     for(var i=0;i<問題数;i++){
 	リスト[i] = 問題リスト[i]
     }
+    データシャッフル(リスト)
+    /*
     for(var i=0;i<問題数;i++){
 	let n = Math.floor(Math.random() * (問題数-i))
 	let tmp = リスト[i]
 	リスト[i] = リスト[問題数-n-1]
 	リスト[問題数-n-1] = tmp
     }
+    */
     let 最大問題数 = 問題数
     if(最大問題数 > 10) 最大問題数 = 10
     let qlist = リスト.slice(0,最大問題数).join(';')

@@ -25,7 +25,7 @@
     
     <blockquote>
       <form id="saveload">
-	<input type="button" value="データセーブ" onclick="JSONデータセーブ()" style="margin:3px;" /> データをJSONでローカルファイルにセーブします
+	<input type="button" value="データセーブ" onclick="JSONデータセーブ()" style="margin:3px;" /> ここで作成したデータをJSONでローカルファイルにセーブします
 	<br/>
         <input type="button" value="データロード" onclick="$('#fileload').click()"  style="margin:3px;"/> JSONデータを読み込みます
 	<br/>
@@ -37,7 +37,7 @@
     <h2>地名リスト</h2>
     
     <ul>
-      <li>馴染みのある地名を30個以上リストしてください</li>
+      <li>馴染みのある地名などを30個以上リストしてください</li>
     </ul>
     
     <blockquote>
@@ -45,6 +45,7 @@
 	<input type="button" value="ランダムに県名を追加" onclick="ランダムに回答を追加(県名リスト)">
 	<input type="button" value="ランダムに都市名を追加" onclick="重みづけランダムに都市を追加()">
 	<input type="button" value="ランダムに町名を追加" onclick="ランダムに回答を追加(町名リスト)">
+	<input type="button" value="シャッフル" onclick="データシャッフル(回答リスト); リスト表示({リスト:回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});" >
       </form>
       
       <form id="answers">
@@ -60,6 +61,7 @@
     <blockquote>
       <form>
 	<input type="button" value="ランダムに問題を追加" onclick="ランダムに問題を追加()">
+	<input type="button" value="シャッフル" onclick="データシャッフル(問題リスト); リスト表示({リスト:問題リスト, フォームid:'questions', クラス:'qinput', 改行あり:true});" >
       </form>
       
       <form id="questions">
