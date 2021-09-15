@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="episopass.css" type="text/css">
   </head>
   <body>
-    <h1>EpisoPassデータ作成</h1>
+    <h1>EpisoPassデータを楽に作成する</h1>
     
     <ul>
       <li>なるべく楽に<a href="https://EpisoPass.com">EpisoPass</a>のQ/Aリストを作れるようにする試みです</li>
@@ -25,10 +25,12 @@
     
     <blockquote>
       <form id="saveload">
-	<input type="button" value="データセーブ" onclick="JSONデータセーブ()" />
+	<input type="button" value="データセーブ" onclick="JSONデータセーブ()" style="margin:3px;" /> データをJSONでローカルファイルにセーブします
+	<br/>
+        <input type="button" value="データロード" onclick="$('#fileload').click()"  style="margin:3px;"/> JSONデータを読み込みます
+	<br/>
+        <input type="button" value="EpisoPassページ作成" onclick="EpisoPassページ作成()"  style="margin:3px;"/> EpisoPassページ作成サイトを開きます
         <input type="file" id="fileload" style="display:none;" accept="text/json" onclick="JSONデータロード()">
-        <input type="button" value="データロード" onclick="$('#fileload').click()" />
-        <input type="button" value="EpisoPassページ作成" onclick="EpisoPassページ作成()" />
       </form>
     </blockquote>
     
