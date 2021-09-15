@@ -120,39 +120,31 @@ function 重みづけランダムに都市を追加(){
     }
 }
 
-function saveAs(data,filename,type){ // ダイアログを開いてデータをローカルファイルにセーブ
-    let blob = new Blob([ data ], { type: type });
-    let url = URL.createObjectURL(blob);
-    const a = $('<a>')
-    a.attr('href',url)
-    a.attr('download',filename)
-    a[0].click(); // jQueryの場合こういう処理が必要
-}
-
-function save(){
+function JSONデータセーブ(){
     let s = "{\n"
     s += "  \"questions\": [\n"
     for(var i=0;i<問題リスト.length;i++){
-	var q = 問題リスト[i].replace(/"/g,'\\"')
-	s += "    \"" + q + "\""
+	s += "    \"" + 問題リスト[i].replace(/"/g,'\\"') + "\""
 	if(i < 問題リスト.length-1) s += ","
 	s += "\n"
     }
-    s += "  ],\n"
-    s += "  \"answers\": [\n"
+    s += "  ],\n  \"answers\": [\n"
     for(var i=0;i<回答リスト.length;i++){
-	var a = 回答リスト[i].replace(/"/g,'\\"')
-	s += "    \"" + a + "\""
+	s += "    \"" + 回答リスト[i].replace(/"/g,'\\"') + "\""
 	if(i < 回答リスト.length-1) s += ","
 	s += "\n"
     }
-    s += "  ]\n"
-    s += "}\n"
+    s += "  ]\n}\n"
     
-    saveAs(s, 'episopass.json', "text/json");
+    let blob = new Blob([ s ], { type: 'text/json' });
+    let url = URL.createObjectURL(blob);
+    const a = $('<a>')
+	  .attr('href',url)
+	  .attr('download','episopass.json')
+    a[0].click(); // jQueryの場合こういう処理が必要
 }
 
-function getjson(){
+function JSONデータロード(){
     console.log('getjson()')
     var file = document.querySelector('#fileload');
     file.onchange = function (){
@@ -175,38 +167,32 @@ function getjson(){
 		.attr('id','fileload')
 		.css('display','none')
 		.attr('accept','text/json')
-		.on('click',getjson)
+		.on('click',JSONデータロード)
 		.appendTo($('#saveload'))
 	    
         };
     }
 }
 
-function goEpisoPass(){
-    let len = 問題リスト.length
-
-    let a = []
-    for(var i=0;i<問題リスト.length;i++){
-	a[i] = 問題リスト[i]
+function EpisoPassページ作成(){
+    let 問題数 = 問題リスト.length
+    let リスト = []
+    for(var i=0;i<問題数;i++){
+	リスト[i] = 問題リスト[i]
     }
-    for(var i=0;i<len;i++){
-	let n = Math.floor(Math.random() * len)
-	var tmp = a[i]
-	a[i] = a[len-n-1]
-	a[len-n-1] = tmp
+    for(var i=0;i<問題数;i++){
+	let n = Math.floor(Math.random() * (問題数-i))
+	let tmp = リスト[i]
+	リスト[i] = リスト[問題数-n-1]
+	リスト[問題数-n-1] = tmp
     }
+    let 最大問題数 = 問題数
+    if(最大問題数 > 10) 最大問題数 = 10
+    let qlist = リスト.slice(0,最大問題数).join(';')
 
-    let max = len
-    if(max > 10) max = 10
-    var qlist = a.slice(0,max).join(';')
-
-    var alist = 回答リスト.join(';')
+    let alist = 回答リスト.join(';')
 
 
-    var url = `http://episopass.com/episopass.html?questions=${qlist}&answers=${alist}`
-    console.log(url)
-    
-    
-    location.href = encodeURI(url)
+    window.open(encodeURI(`http://episopass.com/episopass.html?questions=${qlist}&answers=${alist}`))
 }
 

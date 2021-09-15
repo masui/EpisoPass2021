@@ -25,10 +25,10 @@
     
     <blockquote>
       <form id="saveload">
-	<input type="button" value="データセーブ" onclick="save()" />
-        <input type="file" id="fileload" style="display:none;" accept="text/json" onclick="getjson()">
+	<input type="button" value="データセーブ" onclick="JSONセーブ()" />
+        <input type="file" id="fileload" style="display:none;" accept="text/json" onclick="JSONデータロード()">
         <input type="button" value="データロード" onclick="$('#fileload').click()" />
-        <input type="button" value="EpisoPass作成" onclick="goEpisoPass()" />
+        <input type="button" value="EpisoPassページ作成" onclick="EpisoPassページ作成()" />
       </form>
     </blockquote>
     
