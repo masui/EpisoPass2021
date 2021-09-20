@@ -4,3 +4,5 @@
 
 * <a href="https://GitHub.com/masui/EpisoPass2020">EpisoPass2020</a>にマージしたのでここは終了する
 (2021/9/19)
+
+* と思ったがCloudFlareで運用するように実験
