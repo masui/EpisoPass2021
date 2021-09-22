@@ -18,8 +18,8 @@ data = {
 }
 pool = require("./samplepool.json")
 
-// localStorageに問題プールデータがあれば取得
-// (前回のプールデータが使われることになる)
+// localStorageに問題データベースがあれば取得
+// (前回のデータが使われることになる)
 let localpoolstr = localStorage.getItem('EpisoPool')
 if(localpoolstr){
     let localpool = JSON.parse(localpoolstr)
