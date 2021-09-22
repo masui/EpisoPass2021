@@ -1,5 +1,3 @@
-
-
 episodb = function(){
     function init(){
 	lib.lib.show('#episodb')
