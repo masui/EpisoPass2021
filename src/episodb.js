@@ -213,7 +213,7 @@ EpisoPassデータ作成 = function(){
     }
     data.qas = qas
 
-    // localStorageに問題プールデータを格納
+    // localStorageに問題データベースを格納
     localStorage.setItem('EpisoDB',JSONデータ())
 }
 
