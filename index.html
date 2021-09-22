@@ -247,7 +247,10 @@ input.button {
 	<h3>問題を簡単に作成する</h3>
 	<ul>
 	  <li><a href='#' onclick="episopool.episopool()"><b>問題データベース編集</b></a>メニューを選択すると、EpisoPass問題を作成するための問題データベースを作成できます。</li>
-	  <li>問題データベース編集ページで回答リストと問題リストを作成しておくと、<a href='#' onclick="editor.editor()"><b>問題編集</b></a>メニューでそのデータを利用できます。</li>
+	  <li>問題データベース編集ページで回答リストと問題リストを作成しておくと、
+	    問題データベースからランダムに選択されたデータを
+	    <a href='#' onclick="editor.editor()"><b>問題編集</b></a>メニューで利用できます。
+	  </li>
 	  <li>問題データベースデータはJSON型式のローカルファイルとしてセーブ/ロードできます。</li>
 	  <li><a href="https://s3-ap-northeast-1.amazonaws.com/masui.org/1/f/1feba39d1db3047b9fd0771852c22e41.json">問題データベースデータの例</a></li>
 	</ul>
