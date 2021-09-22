@@ -1,10 +1,10 @@
 
 
-episopool = function(){
+episodb = function(){
     function init(){
-	lib.lib.show('#episopool')
-	リスト表示({リスト:pool.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false})
-	リスト表示({リスト:pool.問題リスト, フォームid:'questions', クラス:'questioninput', 改行あり:true})
+	lib.lib.show('#episodb')
+	リスト表示({リスト:db.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false})
+	リスト表示({リスト:db.問題リスト, フォームid:'questions', クラス:'questioninput', 改行あり:true})
     }
     init()
 }
@@ -82,34 +82,34 @@ function リスト表示(属性){
 }
 
 ランダムに回答を追加 = function(リスト){
-    let 未登録のリスト = リスト.filter(item => !pool.回答リスト.includes(item))
+    let 未登録のリスト = リスト.filter(item => !db.回答リスト.includes(item))
     let 未登録のデータの数 = 未登録のリスト.length
     if(未登録のデータの数 == 0) return
     let 新たに登録するデータ = 未登録のリスト[Math.floor(Math.random() * 未登録のデータの数)]
-    pool.回答リスト.push(新たに登録するデータ)
-    リスト表示({リスト:pool.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+    db.回答リスト.push(新たに登録するデータ)
+    リスト表示({リスト:db.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
 }
 
 ランダムに問題を追加 = function(){
-    let 未登録のリスト = pool.問題例リスト.filter(item => !pool.問題リスト.includes(item))
+    let 未登録のリスト = db.問題例リスト.filter(item => !db.問題リスト.includes(item))
     let 未登録のデータの数 = 未登録のリスト.length
     if(未登録のデータの数 == 0) return
     let 新たに登録するデータ = 未登録のリスト[Math.floor(Math.random() * 未登録のデータの数)]
-    pool.問題リスト.push(新たに登録するデータ)
-    リスト表示({リスト:pool.問題リスト, フォームid:'questions', クラス:'questioninput', 改行あり:true});
+    db.問題リスト.push(新たに登録するデータ)
+    リスト表示({リスト:db.問題リスト, フォームid:'questions', クラス:'questioninput', 改行あり:true});
 }
 
 重みづけ都市選択 = function(){ // 人口の多い都市ほど選ばれやすくする
     let 総人口 = 0
-    for(var i=0;i<pool.都市リスト.length;i++){
-	総人口 += pool.都市リスト[i][1]
+    for(var i=0;i<db.都市リスト.length;i++){
+	総人口 += db.都市リスト[i][1]
     }
     let 何人目か = Math.floor(Math.random() * 総人口)
     let 人口総和 = 0
-    for(var i=0;i<pool.都市リスト.length;i++){
-	人口総和 += pool.都市リスト[i][1]
+    for(var i=0;i<db.都市リスト.length;i++){
+	人口総和 += db.都市リスト[i][1]
 	if(人口総和 > 何人目か){
-	    return pool.都市リスト[i][0]
+	    return db.都市リスト[i][0]
 	}
     }
     return '横浜'
@@ -118,10 +118,10 @@ function リスト表示(属性){
 重みづけランダムに都市を追加 = function(){
     let 都市
     for(var i=0;i<1000;i++){
-	都市 = 重みづけ都市選択(pool.都市リスト)
-	if(!pool.回答リスト.includes(都市)){
-	    pool.回答リスト.push(都市)
-	    リスト表示({リスト:pool.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+	都市 = 重みづけ都市選択(db.都市リスト)
+	if(!db.回答リスト.includes(都市)){
+	    db.回答リスト.push(都市)
+	    リスト表示({リスト:db.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
 	    break;
 	}
     }
@@ -130,15 +130,15 @@ function リスト表示(属性){
 JSONデータ = function(){
     let s = "{\n"
     s += "  \"questions\": [\n"
-    for(var i=0;i<pool.問題リスト.length;i++){
-	s += "    \"" + pool.問題リスト[i].replace(/"/g,'\\"') + "\""
-	if(i < pool.問題リスト.length-1) s += ","
+    for(var i=0;i<db.問題リスト.length;i++){
+	s += "    \"" + db.問題リスト[i].replace(/"/g,'\\"') + "\""
+	if(i < db.問題リスト.length-1) s += ","
 	s += "\n"
     }
     s += "  ],\n  \"answers\": [\n"
-    for(var i=0;i<pool.回答リスト.length;i++){
-	s += "    \"" + pool.回答リスト[i].replace(/"/g,'\\"') + "\""
-	if(i < pool.回答リスト.length-1) s += ","
+    for(var i=0;i<db.回答リスト.length;i++){
+	s += "    \"" + db.回答リスト[i].replace(/"/g,'\\"') + "\""
+	if(i < db.回答リスト.length-1) s += ","
 	s += "\n"
     }
     s += "  ]\n}\n"
@@ -164,10 +164,10 @@ JSONデータロード = function(){
         reader.readAsText(fileList[0]);
         reader.onload = function  () {
 	    var data = $.parseJSON(reader.result)
-	    pool.問題リスト = data['questions']
-	    pool.回答リスト = data['answers']
-	    リスト表示({リスト:pool.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
-	    リスト表示({リスト:pool.問題リスト, フォームid:'questions', クラス:'questioninput', 改行あり:true});
+	    db.問題リスト = data['questions']
+	    db.回答リスト = data['answers']
+	    リスト表示({リスト:db.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+	    リスト表示({リスト:db.問題リスト, フォームid:'questions', クラス:'questioninput', 改行あり:true});
 	    
 	    
 	    // よくわからないが <input> を作りなおさないと再ロードができない
@@ -195,10 +195,10 @@ function データシャッフル(リスト){
 }
 
 EpisoPassデータ作成 = function(){
-    let 問題数 = pool.問題リスト.length
+    let 問題数 = db.問題リスト.length
     let リスト = []
     for(var i=0;i<問題数;i++){
-	リスト[i] = pool.問題リスト[i]
+	リスト[i] = db.問題リスト[i]
     }
     データシャッフル(リスト)
     let 最大問題数 = 問題数
@@ -208,16 +208,16 @@ EpisoPassデータ作成 = function(){
     for(var i=0;i<最大問題数;i++){
 	var o = {}
 	o["question"] = リスト[i]
-	o["answers"] = pool.回答リスト
+	o["answers"] = db.回答リスト
 	qas.push(o)
     }
     data.qas = qas
 
     // localStorageに問題プールデータを格納
-    localStorage.setItem('EpisoPool',JSONデータ())
+    localStorage.setItem('EpisoDB',JSONデータ())
 }
 
-exports.episopool = episopool
+exports.episodb = episodb
 exports.ランダムに問題を追加 = ランダムに問題を追加
 exports.データシャッフル = データシャッフル
 exports.リスト表示 = リスト表示
