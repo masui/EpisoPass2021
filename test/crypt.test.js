@@ -4,9 +4,10 @@ const seedsamples = [
     "abcdefghijklmn",
     "ABCDEFG",
     "1234567",
-    "!@#$%^&*()0123456"
-
-//    "abcdefg-_".repeat(20)
+    "3141592653589790".repeat(20),
+    "_________________________________"
+    //"!@#$%^&*()0123456".repeat(20)
+    //    "abcdefg-_".repeat(20)
 ]
 const secretsamples = [
     "秘密の文字列",
