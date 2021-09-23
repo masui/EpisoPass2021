@@ -1,3 +1,5 @@
+.PHONY: test
+
 all: compile dasmaker episodas template index pack embed scp cp
 
 allcp: compile dasmaker episodas template index pack embed scp cp
@@ -41,3 +43,5 @@ scp:
 cp:
 	cp dist/episopass.html index.html
 
+test:
+	cd test; make
