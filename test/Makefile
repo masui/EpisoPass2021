@@ -1,7 +1,7 @@
 test:
 	jest
 
-puppeteer:
+install:
 	yarn add --dev puppeteer
 	yarn add --dev jest-puppeteer
 

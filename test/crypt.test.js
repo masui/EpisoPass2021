@@ -29,45 +29,47 @@ const secretSamples = [
     ""
 ]
 
-test('同じ長さに変換される', () => {
-    secretSamples.forEach((secret) => {
-	seedSamples.forEach((seed) => {
-	    let crypted = crypt.crypt(seed,secret)
-	    expect(crypted.length).toBe(seed.length)
+describe('文字置換アルゴリズムcrypt()のテスト',() => {
+    test('同じ長さに変換される', () => {
+	secretSamples.forEach((secret) => {
+	    seedSamples.forEach((seed) => {
+		let crypted = crypt.crypt(seed,secret)
+		expect(crypted.length).toBe(seed.length)
+	    })
+	    for(var i=0;i<100;i++){
+		let seed = randomString()
+		let crypted = crypt.crypt(seed,secret)
+		expect(crypted.length).toBe(seed.length)
+	    }
 	})
-	for(var i=0;i<100;i++){
-	    let seed = randomString()
-	    let crypted = crypt.crypt(seed,secret)
-	    expect(crypted.length).toBe(seed.length)
-	}
-    })
-});
-
-test('もとの文字列に戻る', () => {
-    secretSamples.forEach((secret) => {
-	seedSamples.forEach((seed) => {
-	    let crypted = crypt.crypt(seed,secret)
-	    let crypted2 = crypt.crypt(crypted,secret)
-	    expect(crypted2).toBe(seed) // crypt()を2回適用するともとに戻る
+    });
+    
+    test('もとの文字列に戻る', () => {
+	secretSamples.forEach((secret) => {
+	    seedSamples.forEach((seed) => {
+		let crypted = crypt.crypt(seed,secret)
+		let crypted2 = crypt.crypt(crypted,secret)
+		expect(crypted2).toBe(seed) // crypt()を2回適用するともとに戻る
+	    })
+	    for(var i=0;i<100;i++){
+		let seed = randomString()
+		let crypted = crypt.crypt(seed,secret)
+		let crypted2 = crypt.crypt(crypted,secret)
+		expect(crypted2).toBe(seed) // crypt()を2回適用するともとに戻る
+	    }
 	})
-	for(var i=0;i<100;i++){
-	    let seed = randomString()
-	    let crypted = crypt.crypt(seed,secret)
-	    let crypted2 = crypt.crypt(crypted,secret)
-	    expect(crypted2).toBe(seed) // crypt()を2回適用するともとに戻る
-	}
-    })
-});
-
-test('同じ文字クラスに変換される', () => {
-    let seed, crypted
-    secretSamples.forEach((secret) => {
-	seed = "lowercasecharacters"
-	crypted = crypt.crypt(seed,secret)
-	expect(crypted).toMatch(/^[a-z]+$/) // 小文字のシードは小文字に変換される
-	seed = "3141592653589000"
-	crypted = crypt.crypt(seed,secret)
-	expect(crypted).toMatch(/^[0-9]+$/)
+    });
+    
+    test('同じ文字クラスに変換される', () => {
+	let seed, crypted
+	secretSamples.forEach((secret) => {
+	    seed = "lowercasecharacters"
+	    crypted = crypt.crypt(seed,secret)
+	    expect(crypted).toMatch(/^[a-z]+$/) // 小文字のシードは小文字に変換される
+	    seed = "3141592653589000"
+	    crypted = crypt.crypt(seed,secret)
+	    expect(crypted).toMatch(/^[0-9]+$/)
+	})
     })
 })
 

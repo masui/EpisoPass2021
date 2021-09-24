@@ -1,4 +1,9 @@
-describe('EpisoPass', () => {
+//
+// EpisoPass.comがちゃんと動くかテストしたいのだが
+// そんなことできるのだろうか?
+//
+
+describe('EpisoPass.comのテスト', () => {
     beforeAll(async () => {
 	await page.goto('https://episopass.com');
     });
