@@ -1,18 +1,18 @@
 //
-// EpisoPass.comがちゃんと動くかテストしたいのだが
-// そんなことできるのだろうか?
+// EpisoPass.comがちゃんと動くかのテスト
+// デフォルトのQ/AでDAS生成までチェック
 //
 
 describe('EpisoPass.comのテスト', () => {
     beforeAll(async () => {
 	await page.goto('https://episopass.com');
-    });
+    })
     
     test('ページのタイトルが「EpisoPass」', async () => {
 	await expect(page.title()).resolves.toMatch('EpisoPass');
     });
 
-    test('大阪', async () => {
+    test('デフォルト問題で正しいパスワード生成するかチェック', async () => {
 	await page.click('#editbutton');
 
 	//var item = await page.$('#answer0-1');
@@ -59,7 +59,6 @@ describe('EpisoPass.comのテスト', () => {
 	await page.click('#id0');
 
 	data = await page.evaluate((selector) => {
-	    //return document.querySelector(selector).textContent;
 	    return document.querySelector(selector).innerHTML;
 	}, '#id0')
 
@@ -68,7 +67,6 @@ describe('EpisoPass.comのテスト', () => {
 	await page.click('#id0');
 
 	data = await page.evaluate((selector) => {
-	    //return document.querySelector(selector).textContent;
 	    return document.querySelector(selector).innerHTML;
 	}, '#id0')
 
@@ -77,19 +75,14 @@ describe('EpisoPass.comのテスト', () => {
 	await page.click('#id0');
 
 	data = await page.evaluate((selector) => {
-	    //return document.querySelector(selector).textContent;
 	    return document.querySelector(selector).value;
 	}, '#passspan')
 
-    	//expect(data).toMatch('NoockKzbh[543589')
-	console.log(data)
+    	expect(data).toMatch('JuxtyNbld=413067')
+
+	//console.log(data)
 	// JuxtyNbld=413067
-	console.log(seed)
+	//console.log(seed)
     })
 
-    //console.log(page.$('#answer0-1'))
-    
-    //test('aomori', async () => {
-    //	await expect(page.$('#answer0-1').value).toMatch('青森')
-    //})
 });
