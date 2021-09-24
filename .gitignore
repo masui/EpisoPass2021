@@ -9,3 +9,5 @@ src/index.html
 src/dasmaker.js
 src/episodas.js
 package-lock.json
+test/package.json
+test/yarn.lock

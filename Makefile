@@ -35,6 +35,7 @@ clean:
 	-/bin/rm -f *~
 	-/bin/rm -f .gitignore~
 	-/bin/rm -f */*~
+	cd test; make clean
 
 scp:
 	scp dist/episopass.html pitecan.com:/www/www.pitecan.com/tmp
