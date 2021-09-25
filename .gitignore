@@ -13,3 +13,6 @@ test/package.json
 test/yarn.lock
 test-cypress/package.json
 test-cypress/yarn.lock
+test-cypress/cypress/fixtures
+test-cypress/cypress/support
+test-cypress/cypress/videos
