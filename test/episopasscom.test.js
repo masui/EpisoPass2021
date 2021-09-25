@@ -21,7 +21,7 @@ describe('EpisoPass.comのテスト', () => {
 	var data;
 
 	// $('#seed')の値を取得
-	// もう少し簡潔な記法があるのかも
+	// どう書くのが正解なのかよくわからない
 
 	// 方法1
 	//var seed = await page.evaluate((selector) => {
