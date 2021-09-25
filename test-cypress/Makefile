@@ -5,6 +5,7 @@
 
 
 run:
+	npx cypress run -s cypress/integration/crypt.js
 	npx cypress run -s cypress/integration/episopass.js
 
 # GUIの場合
@@ -13,9 +14,8 @@ open:
 
 install:
 	yarn add --dev cypress
-	-mkdir cypress
-	-mkdir cypress/integration
-	cp episopass.js cypress/integration
+#	-mkdir cypress
+#	-mkdir cypress/integration
 
 clean:
 	/bin/rm -r -f node_modules
