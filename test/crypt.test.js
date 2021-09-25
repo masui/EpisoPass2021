@@ -71,5 +71,35 @@ describe('文字置換アルゴリズムcrypt()のテスト',() => {
 	    expect(crypted).toMatch(/^[0-9]+$/)
 	})
     })
+
+    test('同じパスワードは生成されない(1)', () => {
+	let seed = "abcdefghijkl"
+	let passwords = {}
+	let collisions = 0
+	for(var i=0;i<100000;i++){
+	    crypted = crypt.crypt(seed,String(i))
+	    if(passwords[crypted]){
+		collisions += 1
+		console.log(crypted)
+	    }
+	    passwords[crypted] = true
+	}
+	expect(collisions).toBe(0)
+    })
+
+    test('同じパスワードは生成されない(2)', () => {
+	let seed = "000000000000"
+	let passwords = {}
+	let collisions = 0
+	for(var i=0;i<100000;i++){
+	    crypted = crypt.crypt(seed,String(i))
+	    if(passwords[crypted]){
+		collisions += 1
+		console.log(crypted)
+	    }
+	    passwords[crypted] = true
+	}
+	expect(collisions).toBe(0)
+    })
 })
 

@@ -79,6 +79,10 @@ crypt = (seed,secret_string) ->
   res = ''
   [0...seed.length].forEach (i) ->
     j = i % 8
+
+    if j == 0 && i > 0 # 1ビットシフト
+      hash = hash[31] + hash.substr(0,31)
+
     s = hash.substring(j*4,j*4+4)
     n = parseInt(s,16)
     res += crypt_char(seed[i],n+i)
