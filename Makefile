@@ -29,13 +29,14 @@ template: src/episodas.html.erb src/sampledata.json
 	ruby bin/dastemplate.rb > src/dastemplate.js
 
 clean:
-	-/bin/rm -r -f bundle.js
-	-/bin/rm src/editor.js
-	-/bin/rm src/crypt.js
+	-/bin/rm -f bundle.js
+	-/bin/rm -f src/editor.js
+	-/bin/rm -f src/crypt.js
 	-/bin/rm -f *~
 	-/bin/rm -f .gitignore~
 	-/bin/rm -f */*~
 	cd test; make clean
+	cd test-jest; make clean
 
 scp:
 	scp dist/episopass.html pitecan.com:/www/www.pitecan.com/tmp
