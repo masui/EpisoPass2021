@@ -44,5 +44,11 @@ scp:
 cp:
 	cp dist/episopass.html index.html
 
+# Cypressによるテスト
 test:
 	cd test; make
+
+# Jestによるテスト
+testjest:
+	cd test-jest; make
+
