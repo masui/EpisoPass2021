@@ -62,7 +62,8 @@ describe('EpisoPass.comのテスト', () => {
 
 	// 東京を3回選んだとき生成されるパスワードのチェック
 	data = await (await (await page.$('#passspan')).getProperty('value')).jsonValue();
-    	expect(data).toMatch('JuxtyNbld=413067')
+    	// expect(data).toMatch('JuxtyNbld=413067')
+	expect(data).toMatch('JuxtyNblx.093247')
     })
 
     test('長い問題', async () => {
@@ -96,6 +97,7 @@ describe('EpisoPass.comのテスト', () => {
 
 	// 東京を3回選んだとき生成されるパスワードのチェック
 	data = await (await (await page.$('#passspan')).getProperty('value')).jsonValue();
-    	expect(data).toMatch('RnccdDlblSoyw02984')
+    	// expect(data).toMatch('RnccdDlblSoyw02984')
+	expect(data).toMatch('RnccdDlbyRkwa71876')
     })
 });

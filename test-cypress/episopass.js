@@ -12,7 +12,8 @@ describe('EpisoPassのテスト', () => {
 	    .type('EpisoPass_123456')
 	    .should('have.value', 'EpisoPass_123456')
 	cy.get('#pass')
-	    .should('have.value', 'JuxtyNbld=413067')
+	    .should('have.value', 'JuxtyNblx.093247')
+	    // .should('have.value', 'JuxtyNbld=413067')
 	
 	cy.get('#dasbutton').click('center')
 	cy.get('#dmid0').click('center')
@@ -24,7 +25,7 @@ describe('EpisoPassのテスト', () => {
 	cy.get('#id0').click('center')
 	cy.get('#id0').click('center')
 
-	cy.get('#passspan').should('have.value', 'JuxtyNbld=413067')
+	cy.get('#passspan').should('have.value', 'JuxtyNblx.093247')
     })
 
     it('長い問題のテスト', () => {
@@ -41,6 +42,6 @@ describe('EpisoPassのテスト', () => {
 	    cy.get('#id0').click('center')
 	}
 
-	cy.get('#passspan').should('have.value', 'RnccdDlblSoyw02984')
+	cy.get('#passspan').should('have.value', 'RnccdDlbyRkwa71876')
     })
 })
