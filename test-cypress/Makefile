@@ -1,3 +1,9 @@
+#
+# make cleanしたあと、make install make open しないと
+# make run が動かないようだ
+#
+
+
 run:
 	npx cypress run -s cypress/integration/episopass.js
 

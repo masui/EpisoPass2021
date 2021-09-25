@@ -11,3 +11,5 @@ src/episodas.js
 package-lock.json
 test/package.json
 test/yarn.lock
+test-cypress/package.json
+test-cypress/yarn.lock
