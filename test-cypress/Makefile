@@ -1,6 +1,11 @@
 #
-# make cleanしたあと、make install make open しないと
+# Cypressによるテスト
+#
+# npx cypress openするとcypressディレクトリにいろいろ作られるが
+# これが無いと動かない。
+# make cleanしたあと、make install; make open しないと
 # make run が動かないようだ
+# (cypress.jsonが無いとか言われる)
 #
 
 
@@ -14,8 +19,6 @@ open:
 
 install:
 	yarn add --dev cypress
-#	-mkdir cypress
-#	-mkdir cypress/integration
 
 clean:
 	/bin/rm -r -f node_modules
@@ -23,4 +26,3 @@ clean:
 	/bin/rm -f package.json
 	/bin/rm -f cypress.json
 	/bin/rm -f yarn.lock
-	/bin/rm -r -f cypress

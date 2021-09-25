@@ -1,5 +1,5 @@
 //
-// EpisoPassのテスト
+// EpisoPass.comのテスト
 //
 
 describe('EpisoPassのテスト', () => {
