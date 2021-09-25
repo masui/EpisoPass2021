@@ -39,7 +39,7 @@ describe('文字置換アルゴリズムcrypt()のテスト',() => {
 	    for(var i=0;i<100;i++){
 		let seed = randomString()
 		let crypted = crypt.crypt(seed,secret)
-p		expect(crypted.length).toBe(seed.length)
+		expect(crypted.length).toBe(seed.length)
 	    }
 	})
     });
