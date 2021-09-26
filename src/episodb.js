@@ -49,6 +49,7 @@ function リスト表示(属性){
 	$('<input>')
 	    .attr('type','text')
 	    .attr('class',属性.クラス)
+	    .attr('id',`name${i}`)
 	    .val(属性.リスト[i])
 	    .appendTo(エントリ)
 	    .on('change',n個目の答を登録する関数(i,属性))

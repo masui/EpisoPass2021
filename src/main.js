@@ -35,17 +35,17 @@ if(location.search[0] == '?'){ // 引数解釈
 	var kv = pair[i].split('=');
 	if(kv[0] == 'questions'){
 	    questions = decodeURIComponent(kv[1]).split(/;/)
-	}
+        }
 	if(kv[0] == 'answers'){
 	    answers = decodeURIComponent(kv[1]).split(/;/)
-	}
+        }
     }
     let qas = []
     for(let i=0;i<questions.length;i++){
-	let obj = {}
-	obj['question'] = questions[i]
-	obj['answers'] = answers
-	qas.push(obj)
+        let obj = {}
+        obj['question'] = questions[i]
+        obj['answers'] = answers
+        qas.push(obj)
     }
     data = {}
     data['name'] = 'EpisoPass'
