@@ -2,13 +2,10 @@
 // EpisoPass.comのテスト
 //
 
-//const URL = 'https://EpisoPass.com/index.html'
-// const URL = 'http://pitecan.com/tmp/episopass.html'
-
 describe('EpisoPassのテスト', () => {
     it('EpisoPass.comにアクセスしてデフォルト問題をチェック', () => {
 	cy.visit('https://EpisoPass.com') // EpisoPass.comサイトに移動
-	cy.get('#editbutton').click() // タブを選択
+	cy.get('#editbutton').click()     // クリックしてタブを選択
 	cy.get('#seed')
 	    .should('have.value', 'EpisoPass_123456') // デフォルト値をチェック
 	    .clear()
