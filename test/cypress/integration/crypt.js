@@ -34,7 +34,7 @@ describe('cryptのテスト', () => {
 	expect(crypt.crypt('abc','def')).to.equal('jsr')
     })
 
-    it('同じ長さに変換される', () => {
+    it('シードは同じ長さのパスワードに変換される', () => {
 	secretSamples.forEach((secret) => {
 	    seedSamples.forEach((seed) => {
 		let crypted = crypt.crypt(seed,secret)
@@ -48,7 +48,7 @@ describe('cryptのテスト', () => {
 	})
     })
     
-    it('もとの文字列に戻る', () => {
+    it('crypt()を二度適用するともとの文字列に戻る', () => {
 	secretSamples.forEach((secret) => {
 	    seedSamples.forEach((seed) => {
 		let crypted = crypt.crypt(seed,secret)
@@ -64,7 +64,7 @@ describe('cryptのテスト', () => {
 	})
     });
 
-    it('同じ文字クラスに変換される', () => {
+    it('シード文字は同じ文字クラスに変換される', () => {
 	let seed, crypted
 	secretSamples.forEach((secret) => {
 	    seed = "lowercasecharacters"
@@ -76,7 +76,7 @@ describe('cryptのテスト', () => {
 	})
     })
 
-    it('同じパスワードは生成されない(1)', () => {
+    it('シードが長いと同じパスワードは生成されないことのチェック(1)', () => {
 	let seed = "abcdefghijkl"
 	let passwords = {}
 	let collisions = 0
@@ -90,7 +90,7 @@ describe('cryptのテスト', () => {
 	expect(collisions).to.equal(0)
     })
 
-    it('同じパスワードは生成されない(2)', () => {
+    it('シードが長いと同じパスワードは生成されないことのチェック(2)', () => {
 	let seed = "000000000000"
 	let passwords = {}
 	let collisions = 0
@@ -104,7 +104,7 @@ describe('cryptのテスト', () => {
 	expect(collisions).to.equal(0)
     })
 
-    it('同じパスワードが生成されてしまう', () => { // シードが短いと同じパスワードが生成される危険を示す
+    it('シードが短いと同じパスワードが生成されてしまうことの確認', () => { // シードが短いと同じパスワードが生成される危険を示す
 	let seed = "000"
 	let passwords = {}
 	let collisions = 0
