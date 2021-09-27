@@ -38,6 +38,13 @@ describe('EpisoPassのテスト', () => {
 	//cy.get('#name0').should('have.value', '北海道')
 	
 	cy.get('#editbutton').click()
+	cy.get('#question0').should('have.value', 'ビフテキをおかわりしたのは?')
+	cy.get('#answer0-0').should('have.value', '北海道')
+	cy.get('#answer0-46').should('have.value', '沖縄')
+	cy.get('#question1').should('have.value', '洋菓子屋でオナラするのは?')
+	cy.get('#answer1-0').should('have.value', '北海道')
+	cy.get('#answer1-46').should('have.value', '沖縄')
+
 	cy.get('#dasbutton').click()
 
 	// 左上のボタンを10回クリック
