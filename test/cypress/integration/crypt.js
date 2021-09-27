@@ -108,7 +108,7 @@ describe('cryptのテスト', () => {
 	let seed = "000"
 	let passwords = {}
 	let collisions = 0
-	for(var i=0;i<100000;i++){
+	for(var i=0;i<1001;i++){ // シードが数字3桁だと1000種類のパスワードしか生成できないはず
 	    let crypted = crypt.crypt(seed,String(i))
 	    if(passwords[crypted]){
 		collisions += 1
