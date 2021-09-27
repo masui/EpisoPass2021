@@ -103,4 +103,18 @@ describe('cryptのテスト', () => {
 	}
 	expect(collisions).to.equal(0)
     })
+
+    it('同じパスワードが生成されてしまう', () => { // シードが短いと同じパスワードが生成される危険を示す
+	let seed = "000"
+	let passwords = {}
+	let collisions = 0
+	for(var i=0;i<100000;i++){
+	    let crypted = crypt.crypt(seed,String(i))
+	    if(passwords[crypted]){
+		collisions += 1
+	    }
+	    passwords[crypted] = true
+	}
+	expect(collisions).to.not.equal(0)
+    })
 })
