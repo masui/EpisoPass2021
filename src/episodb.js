@@ -218,6 +218,26 @@ EpisoPassデータ作成 = function(){
     localStorage.setItem('EpisoDB',JSONデータ())
 }
 
+module.exports = {
+    'JSONデータセーブ': JSONデータセーブ,
+    'JSONデータロード': JSONデータロード,
+    'EpisoPassデータ作成': EpisoPassデータ作成,
+    'episodb': episodb,
+    'ランダムに問題を追加': ランダムに問題を追加,
+    'データシャッフル': データシャッフル,
+    'リスト表示': リスト表示,
+    'ランダムに回答を追加': ランダムに回答を追加,
+    '重みづけランダムに都市を追加': 重みづけランダムに都市を追加,
+    'JSONデータセーブ': JSONデータセーブ,
+    'JSONデータロード': JSONデータロード,
+    'EpisoPassデータ作成': EpisoPassデータ作成
+}
+
+/*
+exports.JSONデータセーブ = JSONデータセーブ
+exports.JSONデータロード = JSONデータロード
+exports.EpisoPassデータ作成 = EpisoPassデータ作成
+
 exports.episodb = episodb
 exports.ランダムに問題を追加 = ランダムに問題を追加
 exports.データシャッフル = データシャッフル
@@ -228,3 +248,4 @@ exports.重みづけランダムに都市を追加 = 重みづけランダムに
 exports.JSONデータセーブ = JSONデータセーブ
 exports.JSONデータロード = JSONデータロード
 exports.EpisoPassデータ作成 = EpisoPassデータ作成
+*/
