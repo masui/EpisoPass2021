@@ -232,20 +232,3 @@ module.exports = {
     'JSONデータロード': JSONデータロード,
     'EpisoPassデータ作成': EpisoPassデータ作成
 }
-
-/*
-exports.JSONデータセーブ = JSONデータセーブ
-exports.JSONデータロード = JSONデータロード
-exports.EpisoPassデータ作成 = EpisoPassデータ作成
-
-exports.episodb = episodb
-exports.ランダムに問題を追加 = ランダムに問題を追加
-exports.データシャッフル = データシャッフル
-exports.リスト表示 = リスト表示
-exports.ランダムに回答を追加 = ランダムに回答を追加
-exports.重みづけランダムに都市を追加 = 重みづけランダムに都市を追加
-
-exports.JSONデータセーブ = JSONデータセーブ
-exports.JSONデータロード = JSONデータロード
-exports.EpisoPassデータ作成 = EpisoPassデータ作成
-*/
