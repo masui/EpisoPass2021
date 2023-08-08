@@ -111,14 +111,15 @@ editor = () =>
       .attr 'id', "delim#{q}"
     ansdiv.append delim
       
-    minus = $('<input type="button" value=" 回答削除 ">')
-      .on 'click', minusfunc(q)
-    ansdiv.append minus
-    ansdiv.append $('<span>  </span>')
-      
-    plus = $('<input type="button" value=" 回答追加 ">')
-      .on 'click', plusfunc(q)
-    ansdiv.append plus
+    #minus = $('<input type="button" value=" 回答削除 ">')
+    #  .on 'click', minusfunc(q)
+    #ansdiv.append minus
+    #ansdiv.append $('<span>  </span>')
+    #  
+    #plus = $('<input type="button" value=" 回答追加 ">')
+    #  .on 'click', plusfunc(q)
+    #ansdiv.append plus
+
     div.append ansdiv
       .append $('<br clear="all">')
   
@@ -188,10 +189,10 @@ editor = () =>
       globaldata['qas'] = data['qas']
       globaldata['seed'] = data['seed']
 
-      db.問題リスト = []
+      questions = []
       [0...qas.length].forEach (i) =>
-        db.問題リスト.push qas[i]['question']
-      db.回答リスト = qas[0]['answers']
+        questions.push qas[i]['question']
+      answers = qas[0]['answers']
       
       $('#seed').val seed
       $("#main").children().remove()

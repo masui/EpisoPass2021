@@ -11,54 +11,80 @@ episodb = require("./episodb.js")
 lib = require("./lib.js")
 dastemplate = require("./dastemplate.js")
 
-data = {
-    "name": "EpisoPass_masui@pitecan.com",
+data = { // EpisoPass問題で利用されるデータ
+    "name": "EpisoPass",
     "seed": "EpisoPass_123456",
-    "qas": []
+    "qas": [] // 問題ごとに回答を変えられるようにしてた時代のなごり
 }
-db = require("./sampledb.json")
+db = require("./sampledb.json") // サンプルデータなど
 
-// localStorageに問題データベースがあれば取得
-// (前回のデータが使われることになる)
-let localdbstr = localStorage.getItem('EpisoDB')
-if(localdbstr){
-    let localdb = JSON.parse(localdbstr)
-    db.問題リスト= localdb.questions
-    db.回答リスト= localdb.answers
-}
+// 引数解析
+var args = {}
+questions = db.サンプル問題リスト
+answers = db.サンプル回答リスト
+//var dataurl = null
+document.location.search.substring(1).split('&').forEach((s) => {
+    let [name, value] = s.split('=');
+    args[name] = decodeURIComponent(value);
+})
 
-episodb.EpisoPassデータ作成()
-
-if(location.search[0] == '?'){ // 引数解釈
-    let pair = location.search.substring(1).split('&');
-    for(var i=0; pair[i]; i++){
-	var kv = pair[i].split('=');
-	if(kv[0] == 'questions'){
-	    questions = decodeURIComponent(kv[1]).split(/;/)
-        }
-	if(kv[0] == 'answers'){
-	    answers = decodeURIComponent(kv[1]).split(/;/)
-        }
+main = async function(){
+    if(args['data']){ // WebからJSONデータを取得
+	alert('WebからJSON取得')
+	await fetch(args['data'])
+	    .then((response) => response.json())
+	    .then((data) => {
+		questions = data.questions
+		answers = data.answers
+	    })
     }
+    else if(args['questions']){
+	alert('引数からデータ取得')
+	questions = decodeURIComponent(args['questions']).split(/;/)
+	answers = decodeURIComponent(args['answers']).split(/;/)
+    }
+    else {
+	// localStorageに問題データベースがあれば取得 (前回のデータが使われる)
+	let localdbstr = localStorage.getItem('EpisoDBB')
+	if(localdbstr){
+	    alert('localstorageからデータ取得')
+	    let localdb = JSON.parse(localdbstr)
+	    questions = localdb.questions
+	    answers = localdb.answers
+	}
+	else {
+	    alert('デフォルト問題を利用')
+	}
+    }
+
+    // ボタンの挙動設定
+    $("#descbutton").click(() => lib.lib.show('#description'))
+    $("#episodbbutton").click(() => episodb.episodb())
+    $("#editbutton").click(() => editor.editor())
+    $("#dasbutton").off() // 何度も登録されて困った
+    $("#dasbutton").click(() => dasmaker.dasmaker(data,editor.answer()))
+    
+    episodb.EpisoPassデータ作成()
+    
+    alert(questions)
     let qas = []
     for(let i=0;i<questions.length;i++){
-        let obj = {}
-        obj['question'] = questions[i]
-        obj['answers'] = answers
-        qas.push(obj)
+	let obj = {}
+	obj['question'] = questions[i]
+	obj['answers'] = answers
+	qas.push(obj)
     }
-    data = {}
-    data['name'] = 'EpisoPass'
-    data['seed'] = 'EpisoPassSeed01234'
     data['qas'] = qas
+    
+    if(args['questions']){
+	editor.editor(data) // 回答画面へ
+    }
+    else if(args['data']){
+	episodb.episodb() // データベース編集画面へ
+    }
+    else {
+	lib.lib.show('#description')
+    }
 }
 
-// ボタンの挙動設定
-$("#descbutton").click(() => lib.lib.show('#description'))
-$("#editbutton").click(() => editor.editor())
-$("#dasbutton").off() // 何度も登録されて困った
-$("#dasbutton").click(() => dasmaker.dasmaker(data,editor.answer()))
-$("#episodbbutton").click(() => episodb.episodb())
-
-lib.lib.show('#description')
-// editor.editor(data)
+main()

@@ -1,8 +1,8 @@
 episodb = function(){
     function init(){
 	lib.lib.show('#episodb')
-	リスト表示({リスト:db.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false})
-	リスト表示({リスト:db.問題リスト, フォームid:'questions', クラス:'questioninput', 改行あり:true})
+	リスト表示({リスト:answers, フォームid:'answers', クラス:'answerinput', 改行あり:false})
+	リスト表示({リスト:questions, フォームid:'questions', クラス:'questioninput', 改行あり:true})
     }
     init()
 }
@@ -81,21 +81,21 @@ function リスト表示(属性){
 }
 
 ランダムに回答を追加 = function(リスト){
-    let 未登録のリスト = リスト.filter(item => !db.回答リスト.includes(item))
+    let 未登録のリスト = リスト.filter(item => !answers.includes(item))
     let 未登録のデータの数 = 未登録のリスト.length
     if(未登録のデータの数 == 0) return
     let 新たに登録するデータ = 未登録のリスト[Math.floor(Math.random() * 未登録のデータの数)]
-    db.回答リスト.push(新たに登録するデータ)
-    リスト表示({リスト:db.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+    answers.push(新たに登録するデータ)
+    リスト表示({リスト:answers, フォームid:'answers', クラス:'answerinput', 改行あり:false});
 }
 
 ランダムに問題を追加 = function(){
-    let 未登録のリスト = db.問題例リスト.filter(item => !db.問題リスト.includes(item))
+    let 未登録のリスト = db.問題例リスト.filter(item => !questions.includes(item))
     let 未登録のデータの数 = 未登録のリスト.length
     if(未登録のデータの数 == 0) return
     let 新たに登録するデータ = 未登録のリスト[Math.floor(Math.random() * 未登録のデータの数)]
-    db.問題リスト.push(新たに登録するデータ)
-    リスト表示({リスト:db.問題リスト, フォームid:'questions', クラス:'questioninput', 改行あり:true});
+    questions.push(新たに登録するデータ)
+    リスト表示({リスト:questions, フォームid:'questions', クラス:'questioninput', 改行あり:true});
 }
 
 重みづけ都市選択 = function(){ // 人口の多い都市ほど選ばれやすくする
@@ -118,9 +118,9 @@ function リスト表示(属性){
     let 都市
     for(var i=0;i<1000;i++){
 	都市 = 重みづけ都市選択(db.都市リスト)
-	if(!db.回答リスト.includes(都市)){
-	    db.回答リスト.push(都市)
-	    リスト表示({リスト:db.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+	if(!answers.includes(都市)){
+	    answers.push(都市)
+	    リスト表示({リスト:answers, フォームid:'answers', クラス:'answerinput', 改行あり:false});
 	    break;
 	}
     }
@@ -129,15 +129,15 @@ function リスト表示(属性){
 JSONデータ = function(){
     let s = "{\n"
     s += "  \"questions\": [\n"
-    for(var i=0;i<db.問題リスト.length;i++){
-	s += "    \"" + db.問題リスト[i].replace(/"/g,'\\"') + "\""
-	if(i < db.問題リスト.length-1) s += ","
+    for(var i=0;i<questions.length;i++){
+	s += "    \"" + questions[i].replace(/"/g,'\\"') + "\""
+	if(i < questions.length-1) s += ","
 	s += "\n"
     }
     s += "  ],\n  \"answers\": [\n"
-    for(var i=0;i<db.回答リスト.length;i++){
-	s += "    \"" + db.回答リスト[i].replace(/"/g,'\\"') + "\""
-	if(i < db.回答リスト.length-1) s += ","
+    for(var i=0;i<answers.length;i++){
+	s += "    \"" + answers[i].replace(/"/g,'\\"') + "\""
+	if(i < answers.length-1) s += ","
 	s += "\n"
     }
     s += "  ]\n}\n"
@@ -163,12 +163,13 @@ JSONデータロード = function(){
         reader.readAsText(fileList[0]);
         reader.onload = function  () {
 	    var data = $.parseJSON(reader.result)
-	    db.問題リスト = data['questions']
-	    db.回答リスト = data['answers']
-	    リスト表示({リスト:db.回答リスト, フォームid:'answers', クラス:'answerinput', 改行あり:false});
-	    リスト表示({リスト:db.問題リスト, フォームid:'questions', クラス:'questioninput', 改行あり:true});
+	    questions = data['questions']
+	    answers = data['answers']
+	    リスト表示({リスト:answers, フォームid:'answers', クラス:'answerinput', 改行あり:false});
+	    リスト表示({リスト:questions, フォームid:'questions', クラス:'questioninput', 改行あり:true});
 	    
-	    
+
+	    /*
 	    // よくわからないが <input> を作りなおさないと再ロードができない
 	    $('#fileload').remove()
 	    $('<input>')
@@ -178,7 +179,10 @@ JSONデータロード = function(){
 		.attr('accept','text/json')
 		.on('click',JSONデータロード)
 		.appendTo($('#saveload'))
-	    
+	    */
+	    // 作りなおさなくても以下で大丈夫
+	    // https://qiita.com/_Keitaro_/items/57b1c5dd36b7bed08ad8
+	    $('#fileload').val('')
         };
     }
 }
@@ -194,10 +198,12 @@ function データシャッフル(リスト){
 }
 
 EpisoPassデータ作成 = function(){
-    let 問題数 = db.問題リスト.length
+    // let 問題数 = questions.length
+    let 問題数 = questions.length
     let リスト = []
     for(var i=0;i<問題数;i++){
-	リスト[i] = db.問題リスト[i]
+	//リスト[i] = questions[i]
+	リスト[i] = questions[i]
     }
     let 最大問題数 = 問題数
     if(最大問題数 > 10){
@@ -209,7 +215,8 @@ EpisoPassデータ作成 = function(){
     for(var i=0;i<最大問題数;i++){
 	var o = {}
 	o["question"] = リスト[i]
-	o["answers"] = db.回答リスト
+	//o["answers"] = db.回答リスト
+	o["answers"] = answers
 	qas.push(o)
     }
     data.qas = qas
@@ -227,8 +234,5 @@ module.exports = {
     'データシャッフル': データシャッフル,
     'リスト表示': リスト表示,
     'ランダムに回答を追加': ランダムに回答を追加,
-    '重みづけランダムに都市を追加': 重みづけランダムに都市を追加,
-    'JSONデータセーブ': JSONデータセーブ,
-    'JSONデータロード': JSONデータロード,
-    'EpisoPassデータ作成': EpisoPassデータ作成
+    '重みづけランダムに都市を追加': 重みづけランダムに都市を追加
 }
